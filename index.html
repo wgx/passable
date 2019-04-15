@@ -1,0 +1,72 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Passable: one click secure password helper.</title>
+<style>
+body {
+    font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    line-height: 1.6;
+    color: #111;
+    max-width: 40rem;
+    padding: 2rem;
+    margin: auto;
+    background: #eee;
+}
+input {
+     padding: 7px;
+     font-size: 18px;
+     border-width: 1px;
+     border-color: #CCC;
+     background-color: #FFF;
+     border-style: solid;
+     border-radius: 8px;
+}
+input:focus {
+     outline:none;
+}
+button {
+    padding: 7px;
+    font-size: 18px;
+    border-width: 1px;
+    border-color: #CCC;
+    background-color: #FFF;
+    border-style: solid;
+    border-radius: 8px;
+}
+</style>
+</head>
+<body>
+<input type="text" id="textdisplay" size="24">
+<button onclick="copyToClipboard()">📋 Copy to clipboard</button>
+<button onclick="generatePassword()">♻️ Re-generate</button>
+<h1>Passable</h1>
+<h2>100+ bits of entropy, ASCII password that works with most sites.</h2>
+<hr>
+<small>Passable is an experiment by <a href="https://twitter.com/wgx">@wgx</a>, made for fun and offered with no warranty whatsoever.</small>
+<script>
+function generatePassword()
+{
+    var length = 20,
+        charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!#$%&()*,-./0123456789:;?@[]^_`{|}~",
+        generatedPass = "";
+
+        for (var i = 0, n = charset.length; i < length; ++i) {
+            generatedPass += charset.charAt(Math.floor(Math.random() * n));
+        }
+
+    var textdisplay = document.getElementById('textdisplay');
+    textdisplay.value = generatedPass;
+
+}
+
+function copyToClipboard()
+{
+    textdisplay.select();
+    document.execCommand("copy");
+}
+
+generatePassword();
+
+</script>
+</body>
+</html>
